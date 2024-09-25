@@ -14,11 +14,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        platforms: linux/386
+        tags: youtube-dl:latest
+        outputs: type=oci,dest=/tmp/youtube-dl.tar
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: my-image-name
-        path: /tmp/my-image-name.tar
+        name: youtube-dl
+        path: /tmp/youtube-dl.tar
+
+        

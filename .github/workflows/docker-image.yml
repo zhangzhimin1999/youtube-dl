@@ -21,7 +21,7 @@ jobs:
         file: ./Dockerfile
         platforms: linux/386
         tags: youtube-dl:latest
-        outputs: type=oci,dest=/tmp/youtube-dl.tar
+        outputs: dest=/tmp/youtube-dl.tar
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
